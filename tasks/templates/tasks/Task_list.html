@@ -1,0 +1,40 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}Task List{% endblock %}
+
+{% block content %}
+    <h1 class="my-4">Tasks</h1>
+    
+    <a href="{% url 'Task_create' %}" class="btn btn-primary mb-3">Add New Task</a>
+    
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>complited</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Task in tasks %}
+            <tr>
+                <td>{{ Task.title }}</td>
+                <td>{{ Task.description }}</td>
+                <td>{{ Task.due_date }}</td>
+                <td>
+                    {% if Task.complited %}
+                        <span class="badge bg-success">Yes</span>
+                    {% else %}
+                        <span class="badge bg-warning">No</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'Task_update' Task.id %}" class="btn btn-sm btn-info">Edit</a>
+                    <a href="{% url 'Task_delete' Task.id %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

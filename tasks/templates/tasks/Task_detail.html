@@ -1,0 +1,14 @@
+
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+  <h2>{{ Task.title }}</h2>
+  <p>{{ Task.description }}</p>
+  <p>Due: {{ Task.due_date }}</p>
+  <p>Status: {% if Task.complited %}complited{% else %}Not complited{% endif %}</p>
+  <a href="{% url 'Task_update' task.id %}">Edit</a>
+  <form action="{% url 'Task_delete' task.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+{% endblock %}
