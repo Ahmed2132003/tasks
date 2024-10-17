@@ -19,6 +19,18 @@
         <div class="form-check mb-3">
             {{ form.complited }} {{ form.complited.label_tag }}
         </div>
+        <div class="form-check mb-3">
+            {{ form.task_day }} {{ form.task_day.label_tag }}
+        </div>
+        <div class="form-check mb-3">
+            {{ form.task_week }} {{ form.task_week.label_tag }}
+        </div>
+        <div class="form-check mb-3">
+            {{ form.task_month }} {{ form.task_month.label_tag }}
+        </div>
+        <div class="form-check mb-3">
+            {{ form.task_year }} {{ form.task_year.label_tag }}
+        </div>
         <button type="submit" class="btn btn-success">Save</button>
         <a href="{% url 'Task_list' %}" class="btn btn-secondary">Cancel</a>
     </form>

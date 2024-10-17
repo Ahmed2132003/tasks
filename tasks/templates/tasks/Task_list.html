@@ -6,13 +6,48 @@
     <h1 class="my-4">Tasks</h1>
     
     <a href="{% url 'Task_create' %}" class="btn btn-primary mb-3">Add New Task</a>
-    
+
+    <!-- فلترة المهام -->
+    <form method="get" action="{% url 'tasks-filter' %}" class="mb-3">
+        <label for="filter">Filter tasks:</label>
+        <select name="filter" id="filter" class="form-select">
+            <option value="all">All Tasks</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+            <option value="complited">Completed</option>
+            <option value="incomplited">Incomplete</option>
+            <option value="task_day">task_day</option>
+            <option value="task_week">task_week</option>
+            <option value="task_month">task_month</option>
+            <option value="task_year">task_year</option>
+        </select>
+        <button type="submit" class="btn btn-secondary mt-2">Apply Filter</button>
+    </form>
+
+    <!-- فلترة المهام بالتاريخ -->
+    <form method="get" action="{% url 'tasks-filter-by-date' %}" class="mb-3">
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" id="start_date" class="form-control mb-2">
+
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" id="end_date" class="form-control mb-2">
+
+        <button type="submit" class="btn btn-secondary">Filter by Date</button>
+    </form>
+
+    <!-- جدول عرض المهام -->
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
                 <th>Title</th>
                 <th>Description</th>
-                <th>complited</th>
+                <th>Due Date</th>
+                <th>Completed</th>
+                <th>Task_day</th>
+                <th>Task_week</th>
+                <th>Task_month</th>
+                <th>Task_year</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,9 +56,37 @@
             <tr>
                 <td>{{ Task.title }}</td>
                 <td>{{ Task.description }}</td>
-                <td>{{ Task.due_date }}</td>
+                <td>{{ Task.due_date|date:"l, d M Y" }}</td> <!-- عرض اسم اليوم -->
                 <td>
                     {% if Task.complited %}
+                        <span class="badge bg-success">Yes</span>
+                    {% else %}
+                        <span class="badge bg-warning">No</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if Task.task_day %}
+                        <span class="badge bg-success">Yes</span>
+                    {% else %}
+                        <span class="badge bg-warning">No</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if Task.task_week %}
+                        <span class="badge bg-success">Yes</span>
+                    {% else %}
+                        <span class="badge bg-warning">No</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if Task.task_month %}
+                        <span class="badge bg-success">Yes</span>
+                    {% else %}
+                        <span class="badge bg-warning">No</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if Task.task_year %}
                         <span class="badge bg-success">Yes</span>
                     {% else %}
                         <span class="badge bg-warning">No</span>

@@ -6,6 +6,10 @@
   <p>{{ Task.description }}</p>
   <p>Due: {{ Task.due_date }}</p>
   <p>Status: {% if Task.complited %}complited{% else %}Not complited{% endif %}</p>
+  <p>Status: {% if Task.task_day %}task_day{% else %}Not task_day{% endif %}</p>
+  <p>Status: {% if Task.task_week %}task_week{% else %}Not task_week{% endif %}</p>
+  <p>Status: {% if Task.task_month %}task_month{% else %}Not task_month{% endif %}</p>
+  <p>Status: {% if Task.task_year %}task_year{% else %}Not task_year{% endif %}</p>
   <a href="{% url 'Task_update' task.id %}">Edit</a>
   <form action="{% url 'Task_delete' task.id %}" method="POST">
     {% csrf_token %}
